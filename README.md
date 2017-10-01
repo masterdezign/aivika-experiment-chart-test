@@ -1,5 +1,5 @@
 
-# A Simulation Model Demonstrating the Chart Plotting in Aivika
+# Simulation Model Demonstrating Chart Plotting in Aivika
 
 This test project demonstrates the chart plotting in the [Aivika](http://www.aivikasoft.com) simulation framework.
 
