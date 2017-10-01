@@ -1,0 +1,55 @@
+name:                aivika-experiment-chart-test
+version:             0.1.0.0
+synopsis:            A simulation model demonstrating the chart plotting 
+description:
+    This is a simulation model demonstrating the chart plotting.
+    .
+license:             BSD3
+license-file:        LICENSE
+author:              David Sorokin
+maintainer:          david.sorokin@gmail.com
+copyright:           (c) 2017. David Sorokin <david.sorokin@gmail.com>
+category:            Simulation
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Lib
+  build-depends:       base >= 4.7 && < 5
+  default-language:    Haskell2010
+
+executable aivika-experiment-chart-test
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  other-modules:       Model
+                       Experiment
+  ghc-options:         -threaded -O2 -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , aivika
+                     , aivika-transformers
+                     , aivika-experiment
+                     , aivika-experiment-chart
+                     , aivika-experiment-diagrams
+                     , aivika-experiment-chart-test
+                     , Chart
+                     , Chart-diagrams
+                     , array
+                     , mtl
+                     , open-browser
+                     , filepath
+                     , directory
+  default-language:    Haskell2010
+  other-extensions:    TemplateHaskell,
+                       DeriveGeneric,
+                       DeriveDataTypeable
+
+test-suite aivika-experiment-chart-test-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , aivika-experiment-chart-test
+  ghc-options:         -threaded -O2 -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
