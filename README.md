@@ -4,7 +4,7 @@
 This test project demonstrates the chart plotting in the [Aivika](http://www.aivikasoft.com) simulation framework.
 
 ![DeviationChart]
-(images/DeviationChart.svg)
+(https://github.com/dsorokin/aivika-experiment-chart-test/blob/master/images/DeviationChart.svg)
 
 ### Prerequisites
 
