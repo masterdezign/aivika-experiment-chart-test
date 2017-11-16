@@ -1,9 +1,9 @@
 
-# Mackey-Glass DDE Demonstrating Chart Plotting in Aivika
+# Mackey-Glass DDE Chart Plotting in Aivika
 
 This project was adapted from https://github.com/dsorokin/aivika-experiment-chart-test
 
-![Comparison](https://raw.githubusercontent.com/masterdezign/aivika-experiment-chart-test/master/images/comparison.png)
+![Comparison](https://raw.githubusercontent.com/masterdezign/aivika-experiment-dde-test/master/images/comparison.png)
 
 ### Prerequisites
 
@@ -14,8 +14,8 @@ You need [Stack](http://docs.haskellstack.org/) installed on your computer. But 
 Download the test code from GitHub:
 
 ```
-$ git clone https://github.com/masterdezign/aivika-experiment-chart-test.git
-$ cd aivika-experiment-chart-test
+$ git clone https://github.com/masterdezign/aivika-experiment-dde-test.git
+$ cd aivika-experiment-dde-test
 ```
 
 ### Building Project
@@ -32,6 +32,6 @@ In the beginning and after each change of the corresponding Haskell code, you ha
 
 To run the simulation, type in the Terminal window:
 
-`$ stack exec aivika-experiment-chart-test`
+`$ stack exec aivika-experiment-dde-test`
 
-After the application finishes, you should see the simulation results in your opening Web browser.
+After the application terminates, you will find the simulation results in a newly created `experiment/` directory.
