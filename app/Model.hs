@@ -6,18 +6,13 @@ import Simulation.Aivika
 import Simulation.Aivika.SystemDynamics
 import Simulation.Aivika.Experiment
 
--- FHN, Izhikevich, page 106
--- dV/dt = V (a−V)(V−1) − w
--- dw/dt = bV − cw
+-- Mackey-Glass delay equation
+model :: Simulation Results
+model =
+  mdo x <- integ (beta * x / (1 + x^10) - gamma * x) 0.2
+      let gamma = 0.1
+          beta = 0.2
 
-model :: (Dynamics Double, Dynamics Double) -> Simulation Results
-model (v0, w0) =
-  mdo v <- integ (v * (a - v) * (v - 1) - w) v0
-      w <- integ (b * v - c * w) w0
-      let a = 0.1
-          b = 0.01
-          c = 0.1
       return $ results
         [resultSource "t" "time" time,
-         resultSource "v" "variable V" v,
-         resultSource "w" "variable w" w]
+         resultSource "x" "variable x" x]
