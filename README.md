@@ -1,9 +1,9 @@
 
-# Simulation Model Demonstrating Chart Plotting in Aivika
+# Mackey-Glass DDE Demonstrating Chart Plotting in Aivika
 
-This project demonstrates the chart plotting in the [Aivika](http://www.aivikasoft.com) simulation framework.
+This project was adapted from https://github.com/dsorokin/aivika-experiment-chart-test
 
-![DeviationChart](https://github.com/dsorokin/aivika-experiment-chart-test/blob/master/images/DeviationChart.svg)
+![Comparison](https://raw.githubusercontent.com/masterdezign/aivika-experiment-chart-test/master/images/comparison.png)
 
 ### Prerequisites
 
@@ -14,7 +14,7 @@ You need [Stack](http://docs.haskellstack.org/) installed on your computer. But 
 Download the test code from GitHub:
 
 ```
-$ git clone https://github.com/dsorokin/aivika-experiment-chart-test.git
+$ git clone https://github.com/masterdezign/aivika-experiment-chart-test.git
 $ cd aivika-experiment-chart-test
 ```
 
