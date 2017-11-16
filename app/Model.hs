@@ -9,9 +9,11 @@ import Simulation.Aivika.Experiment
 -- Mackey-Glass delay equation
 model :: Simulation Results
 model =
-  mdo x <- integ (beta * x / (1 + x^10) - gamma * x) 0.2
+  mdo xTau <- delayI x tauD 0.2
+      x <- integ (beta * xTau / (1 + xTau^10) - gamma * x) 0.2
       let gamma = 0.1
           beta = 0.2
+          tauD = 17  -- Delay time
 
       return $ results
         [resultSource "t" "time" time,
