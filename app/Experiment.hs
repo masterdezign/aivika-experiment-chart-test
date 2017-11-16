@@ -21,7 +21,7 @@ experiment =
     experimentRunCount = 1,
     experimentTitle = "FHN model",
     experimentDescription = "FitzHugh-Nagumo model simulation. " ++
-                            "Demonstrate the limit cycle." }
+                            "Demonstrate attraction to a fixed point." }
 
 t = resultByName "t"
 v = resultByName "v"
