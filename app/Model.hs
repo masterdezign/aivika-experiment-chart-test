@@ -14,7 +14,7 @@ model :: Simulation Results
 model =
   mdo v <- integ (v * (a - v) * (v - 1) - w) 0.2
       w <- integ (b * v - c * w) (-0.5)
-      let a = 0.1
+      let a = -0.1
           b = 0.01
           c = 0.02
       return $ results

@@ -9,8 +9,8 @@ import Simulation.Aivika.Experiment
 import Simulation.Aivika.Experiment.Chart
 
 specs = Specs { spcStartTime = 0,
-                spcStopTime = 200,
-                spcDT = 0.01,
+                spcStopTime = 800,
+                spcDT = 0.1,
                 spcMethod = RungeKutta4,
                 spcGeneratorType = SimpleGenerator }
 
@@ -21,7 +21,7 @@ experiment =
     experimentRunCount = 1,
     experimentTitle = "FHN model",
     experimentDescription = "FitzHugh-Nagumo model simulation. " ++
-                            "Demonstrate the attraction towards a stable fixed point (-0.000281, 0.000002)." }
+                            "Demonstrate the limit cycle." }
 
 t = resultByName "t"
 v = resultByName "v"
