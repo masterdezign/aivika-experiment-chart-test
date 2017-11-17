@@ -150,14 +150,8 @@ Fourth-order Runge-Kutta for a 1D system with a single delay $\tau_1$.
 >     ! b = h * (sys (xy + over2 * a, x_tau1_b))
 >     ! c = h * (sys (xy + over2 * b, x_tau1_c))
 >     ! d = h * (sys (xy + c, x_tau1'))
->     ! x_tau1_b = extrapol_linear 0.5 (0.0, x_tau1) (1.0, x_tau1')
+>     ! x_tau1_b = (x_tau1 + x_tau1') / 2
 >     ! x_tau1_c = x_tau1_b
-
-Extrapolates linearly between the two points2 A(t1, x1) and B(t2, x2)
-
-> extrapol_linear :: Double -> (Double, Double) -> (Double, Double) -> Double
-> extrapol_linear t (t1, x1) (t2, x2) = k * t + x1
->     where k = (x2 - x1) / (t2 - t1)
 
 Returns the last delay
 
