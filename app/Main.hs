@@ -10,4 +10,4 @@ main =
   do fonts <- loadCommonFonts
      let r0 = DiagramsRenderer SVG (return fonts)
          r  = WebPageRenderer r0 experimentFilePath
-     runExperimentParallel experiment generators r model
+     runExperimentParallel experiment generators r modelIkeda

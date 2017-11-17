@@ -18,3 +18,16 @@ model =
       return $ results
         [resultSource "t" "time" time,
          resultSource "x" "variable x" x]
+
+modelIkeda :: Simulation Results
+modelIkeda =
+  mdo xTau <- delayI x tauD 0.2
+      x <- integ ((-x + beta * 0.5 * (1 - (cos $ 2 * (xTau + phi0))))/epsilon) 0.2
+      let phi0 = 0.2
+          beta = 3
+          epsilon = 0.005
+          tauD = 1  -- Delay time
+
+      return $ results
+        [resultSource "t" "time" time,
+         resultSource "x" "variable x" x]

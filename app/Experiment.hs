@@ -9,8 +9,8 @@ import Simulation.Aivika.Experiment
 import Simulation.Aivika.Experiment.Chart
 
 specs = Specs { spcStartTime = 0,
-                spcStopTime = 1000,
-                spcDT = 0.1,
+                spcStopTime = 10,
+                spcDT = 0.0005,
                 spcMethod = RungeKutta4,
                 spcGeneratorType = SimpleGenerator }
 
@@ -19,7 +19,7 @@ experiment =
   defaultExperiment {
     experimentSpecs = specs,
     experimentRunCount = 1,
-    experimentTitle = "Mackey-Glass",
+    experimentTitle = "Ikeda",
     experimentDescription = "" }
 
 t = resultByName "t"
