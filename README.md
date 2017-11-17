@@ -5,6 +5,8 @@ This project was adapted from https://github.com/dsorokin/aivika-experiment-char
 
 ![Comparison](https://raw.githubusercontent.com/masterdezign/aivika-experiment-dde-test/master/images/comparison.png)
 
+There is a difference between XPPAUT and Aivika outputs. The latter is supposedly more accurate.
+
 ### Prerequisites
 
 You need [Stack](http://docs.haskellstack.org/) installed on your computer. But to reproduce the test, you don't need to know the Haskell programming language, though.
