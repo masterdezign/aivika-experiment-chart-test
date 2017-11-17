@@ -1,13 +1,31 @@
+import Simulation.Aivika
 import Simulation.Aivika.Experiment
-import Simulation.Aivika.Experiment.Chart
-import Simulation.Aivika.Experiment.Chart.Backend.Diagrams
-import Graphics.Rendering.Chart.Backend.Diagrams
+import Simulation.Aivika.Experiment.Base
+import Data.Monoid ( (<>) )
 
 import Model
-import Experiment
 
-main =
-  do fonts <- loadCommonFonts
-     let r0 = DiagramsRenderer SVG (return fonts)
-         r  = WebPageRenderer r0 experimentFilePath
-     runExperimentParallel experiment generators r modelIkeda
+specs = Specs { spcStartTime = 0,
+                spcStopTime = 100,
+                spcDT = 0.0005,
+                spcMethod = RungeKutta4,
+                spcGeneratorType = SimpleGenerator }
+
+experiment :: Experiment
+experiment =
+  defaultExperiment {
+    experimentSpecs = specs,
+    experimentRunCount = 1,
+    experimentTitle = "Ikeda",
+    experimentDescription = "" }
+t = resultByName "t"
+x = resultByName "x"
+
+generators :: [WebPageGenerator a]
+generators =
+  [outputView defaultExperimentSpecsView,
+   outputView defaultInfoView,
+   outputView $ defaultTableView {
+     tableSeries = t <> x } ]
+
+main = runExperiment experiment generators (WebPageRenderer () experimentFilePath) modelIkeda

@@ -26,7 +26,6 @@ executable aivika-experiment-dde-test
   hs-source-dirs:      app
   main-is:             Main.hs
   other-modules:       Model
-                       Experiment
   ghc-options:         -threaded -O2 -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , aivika
