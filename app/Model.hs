@@ -58,11 +58,14 @@ modelIkeda =
              listArray bnds xs
 
       let xTauPrecise =
-            Dynamics $ \p ->
-            if pointIteration p > k
-            then let n = pointIteration p
-                 in invokeDynamics (points ! (n - k)) x
-            else return 0.2
+           Dynamics $ \p ->
+             if pointIteration p > k
+             then let n  = pointIteration p
+                      ph = pointPhase p
+                  in if ph < 3
+                     then invokeDynamics (points ! (n - k)) x
+                     else invokeDynamics (points ! (n - k + 1)) x
+             else return 0.2
 
       return $ results
         [resultSource "t" "time" time,
