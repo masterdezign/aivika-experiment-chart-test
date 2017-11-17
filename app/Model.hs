@@ -21,22 +21,19 @@ model =
           beta = 0.2
           -- tauD = 17  -- Delay time
 
+      let xTauPrecise =
+            Dynamics $ \p ->
+            if pointIteration p > 170
+            then let n = pointIteration p
+                 in invokeDynamics (points ! (n - 170)) x
+            else return 0.2
+
       points <- liftParameter $
         Parameter $ \r ->
         do let xs = integPoints r
                bnds = integIterationBnds (runSpecs r)
            return $
              listArray bnds xs
-
-      let xTauPrecise =
-            Dynamics $ \p ->
-              if pointIteration p > 170
-              then let n  = pointIteration p
-                       ph = pointPhase p
-                   in if ph < 3
-                      then invokeDynamics (points ! (n - 170)) x
-                      else invokeDynamics (points ! (n - 169)) x
-              else return 0.2
 
       return $ results
         [resultSource "t" "time" time,
