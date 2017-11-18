@@ -1,0 +1,27 @@
+#-- begin of equations --
+f(x)=0.5*(1-cos(2*(x+phi0)))
+x'=(-x+beta*f(delay(x,tau)))/epsilon
+#-- end of equations --
+
+#-- begin of parameters --
+par tau=1
+par beta=3
+par phi0=0.2
+par epsilon=0.005
+#-- end of parameters --
+
+#-- begin of initials --
+x(0)=0.2
+init x=0.2
+#-- end of initials --
+
+#-- begin of utils --
+@ total=30
+@ bounds=10000
+# Maximal delay buffer (in time units)
+@ delay=100
+@ dt=0.0005
+@ trans=0
+@ maxstore=100000000
+#-- end of utils --
+done
