@@ -6,7 +6,7 @@ import Data.Monoid ( (<>) )
 import Model
 
 specs = Specs { spcStartTime = 0,
-                spcStopTime = 100,
+                spcStopTime = 30,
                 spcDT = 0.0005,
                 spcMethod = RungeKutta4,
                 spcGeneratorType = SimpleGenerator }
@@ -17,7 +17,7 @@ experiment =
     experimentSpecs = specs,
     experimentRunCount = 1,
     experimentTitle = "Ikeda",
-    experimentDescription = "" }
+    experimentDescription = "The Ikeda DDE" }
 t = resultByName "t"
 x = resultByName "x"
 
