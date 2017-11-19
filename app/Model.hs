@@ -14,10 +14,14 @@ modelMackeyGlass =
 
       let gamma = 0.1
           beta = 0.2
-          tauD = 17   -- The delay time
-          -- dt = 0.01  -- TODO: do not hardcode dt, see also specs
-          -- tauN = round (tauD / dt)  -- Number of integration time steps to delay
-          tauN = 170
+          tauD = 17  -- Delay time
+
+      -- No of discrete samples per delay
+      tauN <-
+        fmap return $
+        liftParameter $
+        do dt' <- dt
+           return $ round (tauD / dt')
 
       return $ results
         [resultSource "t" "time" time,
@@ -26,13 +30,18 @@ modelMackeyGlass =
 -- | Ikeda DDE
 modelIkeda :: Simulation Results
 modelIkeda =
-  mdo let -- dt = 0.0005  -- <- TODO: do not hardcode dt, see also specs
-          tauN = 2000  -- tauD = 1
-      xTau <- delayIByDT x tauN 0.2
+  mdo xTau <- delayIByDT x tauN 0.2
       x <- integ ((-x + beta * 0.5 * (1 - (cos $ 2 * (xTau + phi0)))) / epsilon) 0.2
       let phi0 = 0.2
           beta = 3
           epsilon = 0.005
+
+      -- No of discrete samples per delay
+      tauN <-
+        fmap return $
+        liftParameter $
+        do dt' <- dt
+           return $ round (recip dt')  -- Delay time is 1
 
       return $ results
         [resultSource "t" "time" time,
