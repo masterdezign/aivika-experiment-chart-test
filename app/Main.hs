@@ -1,13 +1,21 @@
+import qualified Data.Vector.Storable as V
+import Data.Monoid ( (<>) )
+
 import Simulation.Aivika
 import Simulation.Aivika.Experiment
 import Simulation.Aivika.Experiment.Base
-import Data.Monoid ( (<>) )
 
 import Model
 
+totalT :: Double
+totalT = 30
+
+dt' :: Double
+dt' = 0.0005
+
 specs = Specs { spcStartTime = 0,
-                spcStopTime = 30,
-                spcDT = 0.0005,
+                spcStopTime = totalT,
+                spcDT = dt',
                 spcMethod = RungeKutta4,
                 spcGeneratorType = SimpleGenerator }
 
@@ -28,4 +36,5 @@ generators =
    outputView $ defaultTableView {
      tableSeries = t <> x } ]
 
-main = runExperiment experiment generators (WebPageRenderer () experimentFilePath) modelIkeda
+main = runExperiment experiment generators (WebPageRenderer () experimentFilePath) $ modelIkeda u
+  where u = V.replicate (round (totalT / dt')) 0  -- No input

@@ -1,6 +1,7 @@
-
 {-# LANGUAGE RecursiveDo #-}
 module Model where
+
+import qualified Data.Vector.Storable as V
 
 import Simulation.Aivika
 import Simulation.Aivika.SystemDynamics
@@ -27,14 +28,17 @@ modelMackeyGlass =
         [resultSource "t" "time" time,
          resultSource "x" "variable x" x]
 
--- | Ikeda DDE
-modelIkeda :: Simulation Results
-modelIkeda =
-  mdo xTau <- delayIByDT x tauN 0.2
-      x <- integ ((-x + beta * 0.5 * (1 - (cos $ 2 * (xTau + phi0)))) / epsilon) 0.2
+-- | Ikeda DDE with external forcing signal @u(t)@
+modelIkeda :: V.Vector Double -> Simulation Results
+modelIkeda u =
+  mdo -- Dynamical variable x(t)
+      x <- integ ((-x + beta * 0.5 * (1 - (cos $ 2 * (xTau + phi0 + input)))) / epsilon) 0
       let phi0 = 0.2
           beta = 3
           epsilon = 0.005
+
+      -- Delay term x(t - 1)
+      xTau <- delayIByDT x tauN 0
 
       -- No of discrete samples per delay
       tauN <-
@@ -42,6 +46,11 @@ modelIkeda =
         liftParameter $
         do dt' <- dt
            return $ round (recip dt')  -- Delay time is 1
+
+      -- External forcing
+      let input = do
+            i <- integIteration
+            return $ u V.! i
 
       return $ results
         [resultSource "t" "time" time,
