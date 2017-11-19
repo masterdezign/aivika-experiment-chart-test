@@ -37,4 +37,7 @@ generators =
      tableSeries = t <> x } ]
 
 main = runExperiment experiment generators (WebPageRenderer () experimentFilePath) $ modelIkeda u
-  where u = V.replicate (round (totalT / dt')) 0  -- No input
+  where u = u0 V.++ u1 V.++ u2
+        u0 = V.replicate (round (5 / dt')) 0
+        u1 = V.replicate 1 1
+        u2 = V.replicate (round ((totalT - 5) / dt') - V.length u1) 0

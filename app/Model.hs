@@ -33,8 +33,8 @@ modelIkeda :: V.Vector Double -> Simulation Results
 modelIkeda u =
   mdo -- Dynamical variable x(t)
       x <- integ ((-x + beta * 0.5 * (1 - (cos $ 2 * (xTau + phi0 + input)))) / epsilon) 0
-      let phi0 = 0.2
-          beta = 3
+      let phi0 = 0.01
+          beta = 1.3
           epsilon = 0.005
 
       -- Delay term x(t - 1)
