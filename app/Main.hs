@@ -6,7 +6,7 @@ import Data.Monoid ( (<>) )
 import Model
 
 specs = Specs { spcStartTime = 0,
-                spcStopTime = 30,
+                spcStopTime = 100,
                 spcDT = 0.0005,
                 spcMethod = RungeKutta4,
                 spcGeneratorType = SimpleGenerator }
@@ -18,6 +18,7 @@ experiment =
     experimentRunCount = 1,
     experimentTitle = "Ikeda",
     experimentDescription = "The Ikeda DDE" }
+
 t = resultByName "t"
 x = resultByName "x"
 
@@ -26,6 +27,10 @@ generators =
   [outputView defaultExperimentSpecsView,
    outputView defaultInfoView,
    outputView $ defaultTableView {
-     tableSeries = t <> x } ]
+     tableSeries = t <> x,
+     -- Save only each 100th point
+     tablePredicate =
+       do n <- liftDynamics integIteration
+          return (n `mod` 100 == 0) } ]
 
 main = runExperiment experiment generators (WebPageRenderer () experimentFilePath) modelIkeda
